@@ -8,19 +8,20 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
+// TODO: Mobile resizing.
 export default function Navbar() {
   return (
     <NavigationMenu className="flex justify-between min-w-full px-8 py-4 bg-black drop-shadow-lg">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link href="#" legacyBehavior passHref>
+          <Link href="#">
             <Image
               src="/daspot-logo.png"
               width={640}
               height={169}
               alt="daspot logo"
-              className="w-1/3 py-2"
-            ></Image>
+              className="w-[250px] py-2"
+            />
           </Link>
         </NavigationMenuItem>
       </NavigationMenuList>
