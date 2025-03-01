@@ -44,7 +44,7 @@ export default function ItemFrame({
         <Image
           src={`/food/${item.image.url}`}
           width={250}
-          height={187.5}
+          height={171}
           alt={item.image.alt}
           className="rounded-2xl w-full"
         />
