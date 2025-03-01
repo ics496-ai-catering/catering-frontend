@@ -1,9 +1,10 @@
-import ItemModal, { ItemModalProps } from "@/components/ItemModal";
+import ItemModal from "@/components/ItemModal";
+import { Item } from "@/lib/types";
 import sampleItems from "@/sample_items.json";
 
 export default function Home() {
   // TODO: We could process the data by passing it into Zod for schema validation, and get matching enums.
-  const data: ItemModalProps[] = sampleItems;
+  const data: Item[] = sampleItems;
 
   return (
     <div className="container mx-auto">
@@ -12,7 +13,8 @@ export default function Home() {
         <div>Something goes here...</div>
 
         {/* Temporarily creating modals here; move them out later */}
-        {data.map((item) => <ItemModal key={item.name} {...item} />)}
+        <ItemModal items={data.slice(0, 5)} />
+        <ItemModal items={data.slice(5, 10)} />
       </div>
     </div>
   );

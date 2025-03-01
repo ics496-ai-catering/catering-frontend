@@ -18,7 +18,7 @@
     "image": { "url": "vegetarian_lasagna.jpg", "alt": "vegetarian lasagna" },
     "type": "Italian",
     "description": "A delicious lasagna made with layers of vegetables, cheese, and pasta.",
-    "tags": ["VEGAN", "GLUTEN"]
+    "tags": ["VEGAN", "GLUTEN_FREE"]
   },
   {
     "name": "Beef Tacos",
@@ -32,7 +32,7 @@
     "image": { "url": "grilled_salmon.jpg", "alt": "grilled salmon" },
     "type": "American",
     "description": "Perfectly grilled salmon served with a side of vegetables.",
-    "tags": ["GLUTEN_FREE"]
+    "tags": ["GLUTEN_FREE", "SPICY"]
   },
   {
     "name": "Chicken Caesar Salad",
@@ -42,14 +42,14 @@
     },
     "type": "American",
     "description": "A classic Caesar salad topped with grilled chicken.",
-    "tags": ["DAIRY", "GLUTEN"]
+    "tags": ["DAIRY", "GLUTEN_FREE"]
   },
   {
     "name": "Margherita Pizza",
     "image": { "url": "margherita_pizza.jpg", "alt": "margherita pizza" },
     "type": "Italian",
     "description": "A simple yet delicious pizza topped with fresh tomatoes, mozzarella, and basil.",
-    "tags": ["VEGAN", "GLUTEN"]
+    "tags": ["VEGAN", "GLUTEN_FREE"]
   },
   {
     "name": "Pad Thai",
@@ -63,7 +63,7 @@
     "image": { "url": "falafel_wrap.jpg", "alt": "falafel wrap" },
     "type": "Middle Eastern",
     "description": "A wrap filled with crispy falafel, fresh vegetables, and tahini sauce.",
-    "tags": ["VEGAN", "GLUTEN"]
+    "tags": ["VEGAN", "GLUTEN_FREE"]
   },
   {
     "name": "BBQ Ribs",

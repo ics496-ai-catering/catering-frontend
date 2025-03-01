@@ -1,59 +1,60 @@
+"use client";
+
+import { Item } from "@/lib/types";
+import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronLeftCircle, ChevronRight, ChevronRightCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import ItemFrame from "./ItemFrame";
+import { AnimatePresence, motion } from "motion/react";
 
-export type ItemModalProps = {
-  name: string;
-  image: {
-    url: string;
-    alt: string;
-  };
-  type: string;
-  description: string;
-  tags?: string[];
-};
+/**
+ * ItemModal component
+ *
+ * This component wraps the ItemFrame componenet for pagination in a modal view.
+ *
+ * @returns
+ */
+export default function ItemModal({ items }: { items: Item[] }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFirstItem, setIsFirstItem] = useState(true);
+  const [isLastItem, setIsLastItem] = useState(false);
 
-export enum ItemTags {
-  DAIRY = "DAIRY",
-  VEGAN = "VEGAN",
-  PEANUTS = "PEANUTS",
-  GLUTEN_FREE = "GLUTEN_FREE",
-  SPICY = "SPICY",
-  ORGANIC = "ORGANIC",
-}
+  useEffect(() => {
+    setIsFirstItem(currentIndex <= 0);
+    setIsLastItem(currentIndex >= items.length - 1);
+  }, [currentIndex, items.length]);
 
-// const tagStyles: { [key in ItemTags]: string } = {
-const tagStyles: Record<string, string> = {
-  [ItemTags.DAIRY]: "bg-blue-200 text-blue-800",
-  [ItemTags.VEGAN]: "bg-green-200 text-green-800",
-  [ItemTags.PEANUTS]: "bg-yellow-200 text-yellow-800",
-  [ItemTags.GLUTEN_FREE]: "bg-red-200 text-red-800",
-  [ItemTags.SPICY]: "bg-orange-200 text-orange-800",
-  [ItemTags.ORGANIC]: "bg-lime-200 text-lime-800",
-};
-
-export default function ItemModal(props: ItemModalProps) {
+  // TODO: Add a close button to the modal
+  // TODO: We could make it infinite pagination instead (return to 0 when reaching the end)
   return (
-    <div className="w-[400px] h-[500px] bg-slate-100 rounded-lg flex flex-col items-center p-4 gap-2 border-2 border-black shadow-xl">
-      <h1 className="font-bold text-2xl">{props.name}</h1>
-      <Image
-        src={`/food/${props.image.url}`}
-        width={250}
-        height={187.5}
-        alt={props.image.alt}
-        className="rounded-2xl w-full"
-      />
-      <p className="text-sm uppercase">{props.type}</p>
-      <p className="text-center">{props.description}</p>
-      <div className="flex gap-2 mt-4">
-        {props.tags?.map((tag) => (
-          <span
-            key={tag}
-            className={cn("px-2 py-1 rounded uppercase", tagStyles[tag])}
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-    </div>
+    <AnimatePresence mode="wait">
+      <motion.div className="relative">
+        <motion.button
+          onClick={() => setCurrentIndex((index) => index - 1)}
+          disabled={isFirstItem}
+          className={cn(
+            "absolute -left-10 top-1/2",
+            isFirstItem && "cursor-not-allowed"
+          )}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <ChevronLeft size={32} className="fill-slate-100" />
+        </motion.button>
+        <ItemFrame index={currentIndex} item={items[currentIndex]} />
+        <motion.button
+          onClick={() => setCurrentIndex((index) => index + 1)}
+          disabled={isLastItem}
+          className={cn(
+            "absolute -right-10 top-1/2",
+            isLastItem && "cursor-not-allowed"
+          )}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <ChevronRight size={32} className="fill-slate-100" />
+        </motion.button>
+      </motion.div>
+    </AnimatePresence>
   );
 }
