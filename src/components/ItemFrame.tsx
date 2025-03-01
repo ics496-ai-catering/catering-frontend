@@ -1,10 +1,10 @@
 import { Item, ItemTags } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { motion } from "motion/react";
 import Image from "next/image";
+import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 
 // const tagStyles: { [key in ItemTags]: string } = {
-export const tagStyles: Record<string, string> = {
+const tagStyles: Record<string, string> = {
   [ItemTags.DAIRY]: "bg-blue-200 text-blue-800",
   [ItemTags.VEGAN]: "bg-green-200 text-green-800",
   [ItemTags.PEANUTS]: "bg-yellow-200 text-yellow-800",
@@ -21,26 +21,13 @@ export const tagStyles: Record<string, string> = {
  * @param item
  * @returns
  */
-export default function ItemFrame({
-  item,
-  index,
-}: {
-  item: Item;
-  index: number;
-}) {
+export default function ItemFrame({ item }: { item: Item }) {
   return (
-    <div
-      key={index}
-      className="w-[400px] h-[500px] rounded-2xl [box-shadow:0_4px_17px_0_rgba(0,0,0,.12)]"
-    >
-      <motion.div
-        className="flex flex-col items-center p-4 gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.2 }}
-      >
-        <h1 className="font-bold text-2xl">{item.name}</h1>
+    <Card className="rounded-2xl [box-shadow:0_4px_17px_0_rgba(0,0,0,.12)]">
+      <CardHeader className="pb-0">
+        <CardTitle className="text-center text-2xl">{item.name}</CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col items-center p-4 gap-2">
         <Image
           src={`/food/${item.image.url}`}
           width={250}
@@ -54,13 +41,16 @@ export default function ItemFrame({
           {item.tags?.map((tag) => (
             <span
               key={tag}
-              className={cn("px-2 py-1 rounded uppercase", tagStyles[tag])}
+              className={cn(
+                "px-2 py-1 rounded uppercase text-xs",
+                tagStyles[tag]
+              )}
             >
               {tag}
             </span>
           ))}
         </div>
-      </motion.div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
