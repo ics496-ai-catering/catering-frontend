@@ -2,7 +2,7 @@
 
 import { Item } from "@/lib/types";
 import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronLeftCircle, ChevronRight, ChevronRightCircle } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ItemFrame from "./ItemFrame";
 import { AnimatePresence, motion } from "motion/react";
