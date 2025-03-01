@@ -1,0 +1,75 @@
+[
+  {
+    "name": "Coconut Lemon Herb Chicken",
+    "image": { "url": "lemon_herb.jpg", "alt": "lemon herb" },
+    "type": "Mediterranean, Greek",
+    "description": "It's creamy, delicious, and wholesome meal. Made with chicken, coconut, lemon, and herbs.",
+    "tags": ["DAIRY", "PEANUTS"]
+  },
+  {
+    "name": "Spicy Thai Basil Chicken",
+    "image": { "url": "thai_basil_chicken.jpg", "alt": "thai basil chicken" },
+    "type": "Thai",
+    "description": "A spicy and flavorful dish made with chicken, basil, and Thai spices.",
+    "tags": ["SPICY", "GLUTEN_FREE"]
+  },
+  {
+    "name": "Vegetarian Lasagna",
+    "image": { "url": "vegetarian_lasagna.jpg", "alt": "vegetarian lasagna" },
+    "type": "Italian",
+    "description": "A delicious lasagna made with layers of vegetables, cheese, and pasta.",
+    "tags": ["VEGAN", "GLUTEN"]
+  },
+  {
+    "name": "Beef Tacos",
+    "image": { "url": "beef_tacos.webp", "alt": "beef tacos" },
+    "type": "Mexican",
+    "description": "Tasty beef tacos served with fresh salsa and guacamole.",
+    "tags": ["GLUTEN_FREE", "DAIRY"]
+  },
+  {
+    "name": "Grilled Salmon",
+    "image": { "url": "grilled_salmon.jpg", "alt": "grilled salmon" },
+    "type": "American",
+    "description": "Perfectly grilled salmon served with a side of vegetables.",
+    "tags": ["GLUTEN_FREE"]
+  },
+  {
+    "name": "Chicken Caesar Salad",
+    "image": {
+      "url": "chicken_caesar_salad.jpeg",
+      "alt": "chicken caesar salad"
+    },
+    "type": "American",
+    "description": "A classic Caesar salad topped with grilled chicken.",
+    "tags": ["DAIRY", "GLUTEN"]
+  },
+  {
+    "name": "Margherita Pizza",
+    "image": { "url": "margherita_pizza.jpg", "alt": "margherita pizza" },
+    "type": "Italian",
+    "description": "A simple yet delicious pizza topped with fresh tomatoes, mozzarella, and basil.",
+    "tags": ["VEGAN", "GLUTEN"]
+  },
+  {
+    "name": "Pad Thai",
+    "image": { "url": "pad_thai.webp", "alt": "pad thai" },
+    "type": "Thai",
+    "description": "A popular Thai dish made with stir-fried noodles, shrimp, and peanuts.",
+    "tags": ["SPICY", "PEANUTS"]
+  },
+  {
+    "name": "Falafel Wrap",
+    "image": { "url": "falafel_wrap.jpg", "alt": "falafel wrap" },
+    "type": "Middle Eastern",
+    "description": "A wrap filled with crispy falafel, fresh vegetables, and tahini sauce.",
+    "tags": ["VEGAN", "GLUTEN"]
+  },
+  {
+    "name": "BBQ Ribs",
+    "image": { "url": "bbq_ribs.jpg", "alt": "bbq ribs" },
+    "type": "American",
+    "description": "Tender and juicy ribs coated in a smoky BBQ sauce.",
+    "tags": ["GLUTEN_FREE", "DAIRY"]
+  }
+]
