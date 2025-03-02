@@ -1,5 +1,6 @@
 "use client"
 
+import { Dispatch, SetStateAction } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -21,7 +22,15 @@ const formSchema = z.object({
   email: z.string(),
 })
 
-export default function CateringInfoForm() {
+interface Props {
+  onChangeSection: Dispatch<SetStateAction<string>>,
+}
+
+export default function CateringInfoForm(
+  {
+    onChangeSection
+  }: Props
+) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -82,7 +91,10 @@ export default function CateringInfoForm() {
             )}
           />
         </div>
-        <div className="self-start"><Button type="submit">Submit</Button></div>
+        <div className="flex justify-between">
+          <Button onClick={() => onChangeSection("catering-info")}>{"<-"} Basic Info</Button>
+          <Button type="submit">Submit</Button>
+        </div>
       </form>
     </UIForm>
   )

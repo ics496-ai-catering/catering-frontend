@@ -1,6 +1,6 @@
 "use client"
 
-import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ItemModal from "@/components/ItemModal";
 import CateringInfoForm from "@/components/forms/CateringInfoForm";
 import ContactInfoForm from "@/components/forms/ContactInfoForm";
@@ -43,11 +43,11 @@ export default function RequestCatering ({ data }: { data: Item[] }) {
       </TabsContent>
       <TabsContent className="bg-gray-50 p-4 m-4 border-2 rounded-md" value="catering-info">
         <h1 className="font-medium text-2xl my-4">Basic Info & Services</h1>
-        <CateringInfoForm onNextSection={() => setTab("finish")} />
+        <CateringInfoForm onChangeSection={setTab} />
       </TabsContent>
       <TabsContent className="bg-gray-50 p-4 m-4 border-2 rounded-md" value="finish">
         <h1 className="font-medium text-2xl my-4">Contact Info</h1>
-        <ContactInfoForm />
+        <ContactInfoForm onChangeSection={setTab} />
       </TabsContent>
     </Tabs>
   );

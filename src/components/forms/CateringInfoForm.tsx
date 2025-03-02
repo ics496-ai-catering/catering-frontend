@@ -87,12 +87,15 @@ const formSchema = z.object({
   moreInfo: z.string().optional(),
 })
 
+interface Props {
+  onChangeSection: Dispatch<SetStateAction<string>>,
+}
+
 export default function CateringInfoForm(
   {
-    onNextSection
-  }: {
-    onNextSection: Dispatch<SetStateAction<boolean>>
-  }) {
+    onChangeSection,
+  }: Props
+) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -329,7 +332,10 @@ export default function CateringInfoForm(
             )}
           />
         </div>
-        <Button className="self-end" onClick={onNextSection}>Contact Info {"->"}</Button>
+        <div className="flex justify-between">
+          <Button onClick={() => onChangeSection("create-order")}>{"<-"} Pick Food</Button>
+          <Button onClick={() => onChangeSection("finish")}>Contact Info {"->"}</Button>
+        </div>
       </form>
     </UIForm>
   )
