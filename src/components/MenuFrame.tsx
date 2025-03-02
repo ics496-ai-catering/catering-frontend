@@ -31,7 +31,7 @@ export default function MenuFrame({
         <span className="text-sm">INCLUDES</span>
         {menu.sets[0].item_ids.map((item_id) => {
           const item = items.get(item_id);
-          return <span key={item_id}>{item.name}</span>;
+          return <span key={item_id}>{item?.name ?? "no name"}</span>;
         })}
       </CardContent>
       <CardFooter className="justify-between">
