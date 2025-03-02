@@ -2,6 +2,8 @@ import ItemModal from "@/components/ItemModal";
 import { Item } from "@/lib/types";
 import sampleItems from "@/sample_items.json";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import CateringInfoForm from "@/components/forms/CateringInfoForm";
+import ContactInfoForm from "@/components/forms/ContactInfoForm";
 
 export default function Home() {
   // TODO: We could process the data by passing it into Zod for schema validation, and get matching enums.
@@ -17,8 +19,8 @@ export default function Home() {
             <TabsTrigger className="text-xs" value="catering-info">Catering Info</TabsTrigger>
             <TabsTrigger className="text-xs" value="finish">Finish</TabsTrigger>
           </TabsList>
-          <TabsContent className="flex flex-col" value="create-order">
-            <h1 className="font-medium text-2xl">Choose ordering method</h1>
+          <TabsContent className="bg-gray-50 p-4 m-4 border-2 rounded-md" value="create-order">
+            <h1 className="font-medium text-2xl my-4">Choose ordering method</h1>
             <Tabs className="mx-auto w-full" defaultValue="menu-sets">
               {/* TODO: style these tabs to look like the original cards */}
               <TabsList className="grid grid-cols-3">
@@ -41,8 +43,14 @@ export default function Home() {
               </TabsContent>
             </Tabs>
           </TabsContent>
-          <TabsContent value="catering-info">Catering Info</TabsContent>
-          <TabsContent value="finish">Finish</TabsContent>
+          <TabsContent className="bg-gray-50 p-4 m-4 border-2 rounded-md" value="catering-info">
+            <h1 className="font-medium text-2xl my-4">Basic Info & Services</h1>
+            <CateringInfoForm />
+          </TabsContent>
+          <TabsContent className="bg-gray-50 p-4 m-4 border-2 rounded-md" value="finish">
+            <h1 className="font-medium text-2xl my-4">Contact Info</h1>
+            <ContactInfoForm />
+          </TabsContent>
         </Tabs>
       </div>
     </div>
