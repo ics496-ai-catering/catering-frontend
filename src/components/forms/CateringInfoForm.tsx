@@ -1,8 +1,11 @@
 "use client"
 
+import { Dispatch, SetStateAction } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import {
   Form as UIForm,
@@ -17,6 +20,37 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { CalendarIcon } from "lucide-react";
+import { TimePicker } from "@/components/TimePicker";
+
+const eventTypes = [
+  {
+    id: "wedding",
+    label: "Wedding",
+  },
+  {
+    id: "birthday",
+    label: "Birthday",
+  },
+  {
+    id: "film-set",
+    label: "Film Set",
+  },
+  {
+    id: "party",
+    label: "Party",
+  },
+  {
+    id: "other",
+    label: "Other",
+  },
+] as const;
 
 const services = [
   {
@@ -37,30 +71,32 @@ const services = [
   },
 ] as const;
 
-// TODO: properly represent date, time, and services in schema
 const formSchema = z.object({
-  eventType: z.enum(["wedding", "birthday", "film-set", "party", "other"]),
+  eventType: z.enum(eventTypes.map(e => e.id) as [string, ...string[]]),
   // z.coerce needed to convert input string to number for z
   partySize: z.coerce.number().min(1,{
     message: "Party size must be at least 1."
   }),
-  date: z.string(),
-  time: z.string(),
+  // It might be better to separate the date and time in the future
+  dateTime: z.date(),
   budgetPerPerson: z.coerce.number().min(0, {
     message: "Budget must be at least 0."
   }),
   location: z.string(),
-  services: z.array(z.string()),
-  moreInfo: z.string(),
+  services: z.array(z.enum(services.map(s => s.id) as [string, ...string[]])),
+  moreInfo: z.string().optional(),
 })
 
-export default function CateringInfoForm() {
+export default function CateringInfoForm(
+  {
+    onNextSection
+  }: {
+    onNextSection: Dispatch<SetStateAction<boolean>>
+  }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       partySize: 1,
-      date: "",
-      time: "",
       budgetPerPerson: 0,
       location: "",
       services: [],
@@ -70,10 +106,9 @@ export default function CateringInfoForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
   }
-  // TODO: make proper date/time pickers
   return (
     <UIForm {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col space-y-8">
         <div className="grid grid-cols-2 gap-4">
           <FormField
             control={form.control}
@@ -88,11 +123,9 @@ export default function CateringInfoForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="wedding">Wedding</SelectItem>
-                    <SelectItem value="birthday">Birthday</SelectItem>
-                    <SelectItem value="film-set">Film Set</SelectItem>
-                    <SelectItem value="party">Party</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
+                    {eventTypes.map(e => (
+                      <SelectItem value={e.id} key={e.id}>{e.label}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 <FormDescription>
@@ -119,55 +152,92 @@ export default function CateringInfoForm() {
             )}
           />
         </div>
-        <div className="grid grid-cols-3 gap-4">
-          <FormField
-            control={form.control}
-            name="date"
-            render={({field}) => (
-              <FormItem>
-                <FormLabel>Date</FormLabel>
-                <FormControl>
-                  <Input className="bg-white" type="text" placeholder="mm/dd/yyyy" {...field} />
-                </FormControl>
-                <FormDescription>
-                  What is the date you need catering?
-                </FormDescription>
-                <FormMessage/>
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="time"
-            render={({field}) => (
-              <FormItem>
-                <FormLabel>Time</FormLabel>
-                <FormControl>
-                  <Input className="bg-white" type="text" placeholder="hh:mm:ss AM/PM" {...field} />
-                </FormControl>
-                <FormDescription>
-                  What is the time you need catering?
-                </FormDescription>
-                <FormMessage/>
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="budgetPerPerson"
-            render={({field}) => (
-              <FormItem>
-                <FormLabel>Budget Per Person</FormLabel>
-                <FormControl>
-                  <Input className="bg-white" type="number" placeholder="Select Budget" {...field} />
-                </FormControl>
-                <FormDescription>
-                  What is your tentative budget?
-                </FormDescription>
-                <FormMessage/>
-              </FormItem>
-            )}
-          />
+        <div className="flex justify-between gap-4">
+          <div className="w-full">
+            <FormField
+              control={form.control}
+              name="dateTime"
+              render={({field}) => (
+                <FormItem>
+                  <FormLabel>Date</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant={"outline"}
+                          className={cn(
+                            "w-full pl-3 text-left font-normal",
+                            !field.value && "text-muted-foreground"
+                          )}
+                        >
+                          {field.value ? (
+                            format(field.value, "PPP")
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50"/>
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        disabled={(date) =>
+                          date <= new Date() || date < new Date("1900-01-01")
+                        }
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormDescription>
+                    What is the date you need catering?
+                  </FormDescription>
+                  <FormMessage/>
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="flex justify-center">
+            <FormField
+              control={form.control}
+              name="dateTime"
+              render={({field}) => (
+                <FormItem>
+                  <FormLabel>Time</FormLabel>
+                  <FormControl>
+                    <TimePicker
+                      setDate={field.onChange}
+                      date={field.value}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    What is the time you need catering?
+                  </FormDescription>
+                  <FormMessage/>
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="w-full">
+            <FormField
+              control={form.control}
+              name="budgetPerPerson"
+              render={({field}) => (
+                <FormItem>
+                  <FormLabel>Budget Per Person</FormLabel>
+                  <FormControl>
+                    <Input className="bg-white" type="number" placeholder="Select Budget" {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    What is your tentative budget?
+                  </FormDescription>
+                  <FormMessage/>
+                </FormItem>
+              )}
+            />
+          </div>
         </div>
         <div>
           <FormField
@@ -194,7 +264,7 @@ export default function CateringInfoForm() {
             render={() => (
               <FormItem>
                 <div className="mb-4">
-                  <FormLabel className="text-base">Services</FormLabel>
+                  <FormLabel>Services</FormLabel>
                   <FormDescription>
                     Do you need any services other than food?
                   </FormDescription>
@@ -259,7 +329,7 @@ export default function CateringInfoForm() {
             )}
           />
         </div>
-        <Button type="submit">Submit</Button>
+        <Button className="self-end" onClick={onNextSection}>Contact Info {"->"}</Button>
       </form>
     </UIForm>
   )

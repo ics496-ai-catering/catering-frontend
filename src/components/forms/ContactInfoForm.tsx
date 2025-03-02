@@ -33,10 +33,9 @@ export default function CateringInfoForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
   }
-  // TODO: make proper date/time pickers
   return (
     <UIForm {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col space-y-8">
         <div className="space-y-4">
           <FormDescription>How can we contact you?</FormDescription>
           <FormField
@@ -83,7 +82,7 @@ export default function CateringInfoForm() {
             )}
           />
         </div>
-        <Button type="submit">Submit</Button>
+        <div className="self-start"><Button type="submit">Submit</Button></div>
       </form>
     </UIForm>
   )
