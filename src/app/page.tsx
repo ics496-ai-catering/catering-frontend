@@ -1,9 +1,5 @@
-import ItemModal from "@/components/ItemModal";
 import { Item } from "@/lib/types";
 import sampleItems from "@/sample_items.json";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import CateringInfoForm from "@/components/forms/CateringInfoForm";
-import ContactInfoForm from "@/components/forms/ContactInfoForm";
 import RequestCatering from "@/components/RequestCatering";
 
 export default function Home() {

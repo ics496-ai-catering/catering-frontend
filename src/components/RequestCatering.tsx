@@ -5,7 +5,7 @@ import ItemModal from "@/components/ItemModal";
 import CateringInfoForm from "@/components/forms/CateringInfoForm";
 import ContactInfoForm from "@/components/forms/ContactInfoForm";
 import { Item } from "@/lib/types";
-import {useState} from "react";
+import { useState } from "react";
 
 export default function RequestCatering ({ data }: { data: Item[] }) {
   const [tab, setTab] = useState<string>("create-order");
