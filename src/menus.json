@@ -1,0 +1,182 @@
+[
+  {
+    "id": "1",
+    "name": "Music Feast",
+    "price": 43,
+    "contains": {
+      "entree": 3,
+      "sides": 1,
+      "pastries": 0,
+      "scratch": 0,
+      "fruit": 1,
+      "salad": 1,
+      "drinks": 1
+    },
+    "sets": [
+      {
+        "id": "1",
+        "item_ids": [
+          "6",
+          "8",
+          "13",
+          "3",
+          "5"
+        ]
+      },
+      {
+        "id": "2",
+        "item_ids": [
+          "15",
+          "18",
+          "9",
+          "12",
+          "14"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Electronics Feast",
+    "price": 35,
+    "contains": {
+      "entree": 3,
+      "sides": 1,
+      "pastries": 0,
+      "scratch": 0,
+      "fruit": 1,
+      "salad": 1,
+      "drinks": 1
+    },
+    "sets": [
+      {
+        "id": "1",
+        "item_ids": [
+          "7",
+          "12",
+          "14",
+          "13",
+          "8"
+        ]
+      },
+      {
+        "id": "2",
+        "item_ids": [
+          "6",
+          "5",
+          "4",
+          "10",
+          "15"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Electronics Feast",
+    "price": 47,
+    "contains": {
+      "entree": 3,
+      "sides": 1,
+      "pastries": 0,
+      "scratch": 0,
+      "fruit": 1,
+      "salad": 1,
+      "drinks": 1
+    },
+    "sets": [
+      {
+        "id": "1",
+        "item_ids": [
+          "4",
+          "12",
+          "20",
+          "14",
+          "7"
+        ]
+      },
+      {
+        "id": "2",
+        "item_ids": [
+          "17",
+          "3",
+          "9",
+          "18",
+          "8"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Toys Feast",
+    "price": 30,
+    "contains": {
+      "entree": 3,
+      "sides": 1,
+      "pastries": 0,
+      "scratch": 0,
+      "fruit": 1,
+      "salad": 1,
+      "drinks": 1
+    },
+    "sets": [
+      {
+        "id": "1",
+        "item_ids": [
+          "4",
+          "12",
+          "1",
+          "7",
+          "6"
+        ]
+      },
+      {
+        "id": "2",
+        "item_ids": [
+          "9",
+          "3",
+          "8",
+          "11",
+          "20"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "name": "Tools Feast",
+    "price": 20,
+    "contains": {
+      "entree": 3,
+      "sides": 1,
+      "pastries": 0,
+      "scratch": 0,
+      "fruit": 1,
+      "salad": 1,
+      "drinks": 1
+    },
+    "sets": [
+      {
+        "id": "1",
+        "item_ids": [
+          "7",
+          "12",
+          "14",
+          "10",
+          "20"
+        ]
+      },
+      {
+        "id": "2",
+        "item_ids": [
+          "4",
+          "2",
+          "9",
+          "6",
+          "5"
+        ]
+      }
+    ]
+  }
+]

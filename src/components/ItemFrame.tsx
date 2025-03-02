@@ -29,7 +29,7 @@ export default function ItemFrame({ item }: { item: Item }) {
       </CardHeader>
       <CardContent className="flex flex-col items-center p-4 gap-2">
         <Image
-          src={`/food/${item.image.url}`}
+          src={`${item.image.url}`}
           width={250}
           height={171}
           alt={item.image.alt}

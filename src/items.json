@@ -1,0 +1,281 @@
+[
+  {
+    "id": "1",
+    "name": "Elegant Cotton Soap",
+    "image": {
+      "url": "/food/beef_tacos.webp",
+      "alt": "Modern"
+    },
+    "type": "Mediterranean",
+    "description": "Stylish Sausages designed to make you stand out with these looks",
+    "tags": [
+      "ORGANIC",
+      "GLUTEN_FREE",
+      "SPICY"
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Electronic Wooden Bacon",
+    "image": {
+      "url": "/food/margherita_pizza.jpg",
+      "alt": "Gorgeous"
+    },
+    "type": "Greek",
+    "description": "The turquoise Sausages combines Bosnia and Herzegovina aesthetics with Mendelevium-based durability",
+    "tags": [
+      "SPICY",
+      "VEGAN",
+      "DAIRY"
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Generic Concrete Chicken",
+    "image": {
+      "url": "/food/beef_tacos.webp",
+      "alt": "Sleek"
+    },
+    "type": "Mexican",
+    "description": "Introducing the Aruba-inspired Fish, blending webbed style with local craftsmanship",
+    "tags": [
+      "ORGANIC"
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Rustic Bamboo Bike",
+    "image": {
+      "url": "/food/chicken_caesar_salad.jpeg",
+      "alt": "Oriental"
+    },
+    "type": "Italian",
+    "description": "Innovative Salad featuring untrue technology and Bronze construction",
+    "tags": [
+      "ORGANIC",
+      "VEGAN",
+      "SPICY"
+    ]
+  },
+  {
+    "id": "5",
+    "name": "Fantastic Steel Keyboard",
+    "image": {
+      "url": "/food/pad_thai.webp",
+      "alt": "Luxurious"
+    },
+    "type": "Greek",
+    "description": "Discover the lion-like agility of our Chicken, perfect for scared users",
+    "tags": [
+      "ORGANIC",
+      "DAIRY"
+    ]
+  },
+  {
+    "id": "6",
+    "name": "Fantastic Granite Cheese",
+    "image": {
+      "url": "/food/pad_thai.webp",
+      "alt": "Intelligent"
+    },
+    "type": "Greek",
+    "description": "Discover the better new Cheese with an exciting mix of Marble ingredients",
+    "tags": [
+      "DAIRY"
+    ]
+  },
+  {
+    "id": "7",
+    "name": "Handmade Marble Bike",
+    "image": {
+      "url": "/food/margherita_pizza.jpg",
+      "alt": "Generic"
+    },
+    "type": "Mediterranean",
+    "description": "Introducing the Sao Tome and Principe-inspired Chips, blending unfinished style with local craftsmanship",
+    "tags": [
+      "VEGAN",
+      "ORGANIC"
+    ]
+  },
+  {
+    "id": "8",
+    "name": "Awesome Bronze Shoes",
+    "image": {
+      "url": "/food/pad_thai.webp",
+      "alt": "Bespoke"
+    },
+    "type": "Italian",
+    "description": "Discover the instructive new Computer with an exciting mix of Steel ingredients",
+    "tags": [
+      "GLUTEN_FREE",
+      "ORGANIC",
+      "DAIRY"
+    ]
+  },
+  {
+    "id": "9",
+    "name": "Soft Bronze Chair",
+    "image": {
+      "url": "/food/grilled_salmon.jpg",
+      "alt": "Licensed"
+    },
+    "type": "Italian",
+    "description": "Stylish Car designed to make you stand out with amazing looks",
+    "tags": [
+      "SPICY",
+      "VEGAN",
+      "GLUTEN_FREE"
+    ]
+  },
+  {
+    "id": "10",
+    "name": "Soft Rubber Shoes",
+    "image": {
+      "url": "/food/vegetarian_lasagna.jpg",
+      "alt": "Fantastic"
+    },
+    "type": "Mediterranean",
+    "description": "Stylish Pants designed to make you stand out with winding looks",
+    "tags": [
+      "VEGAN"
+    ]
+  },
+  {
+    "id": "11",
+    "name": "Incredible Granite Salad",
+    "image": {
+      "url": "/food/beef_tacos.webp",
+      "alt": "Recycled"
+    },
+    "type": "Greek",
+    "description": "Professional-grade Salad perfect for hoarse training and recreational use",
+    "tags": [
+      "PEANUTS"
+    ]
+  },
+  {
+    "id": "12",
+    "name": "Unbranded Concrete Soap",
+    "image": {
+      "url": "/food/grilled_salmon.jpg",
+      "alt": "Bespoke"
+    },
+    "type": "Greek",
+    "description": "The Persevering modular definition Salad offers reliable performance and dense design",
+    "tags": [
+      "SPICY",
+      "DAIRY"
+    ]
+  },
+  {
+    "id": "13",
+    "name": "Rustic Aluminum Salad",
+    "image": {
+      "url": "/food/falafel_wrap.jpg",
+      "alt": "Bespoke"
+    },
+    "type": "Greek",
+    "description": "The gold Bacon combines Anguilla aesthetics with Rhenium-based durability",
+    "tags": [
+      "VEGAN",
+      "SPICY"
+    ]
+  },
+  {
+    "id": "14",
+    "name": "Oriental Marble Towels",
+    "image": {
+      "url": "/food/chicken_caesar_salad.jpeg",
+      "alt": "Recycled"
+    },
+    "type": "Mexican",
+    "description": "Bradtke, Dietrich and Murphy's most advanced Pants technology increases merry capabilities",
+    "tags": [
+      "PEANUTS",
+      "ORGANIC",
+      "DAIRY"
+    ]
+  },
+  {
+    "id": "15",
+    "name": "Unbranded Granite Fish",
+    "image": {
+      "url": "/food/pad_thai.webp",
+      "alt": "Unbranded"
+    },
+    "type": "Mexican",
+    "description": "The Multi-tiered asynchronous utilisation Cheese offers reliable performance and crowded design",
+    "tags": [
+      "SPICY",
+      "PEANUTS"
+    ]
+  },
+  {
+    "id": "16",
+    "name": "Handmade Aluminum Tuna",
+    "image": {
+      "url": "/food/grilled_salmon.jpg",
+      "alt": "Generic"
+    },
+    "type": "Mediterranean",
+    "description": "Schoen Inc's most advanced Chair technology increases frilly capabilities",
+    "tags": [
+      "DAIRY"
+    ]
+  },
+  {
+    "id": "17",
+    "name": "Tasty Rubber Tuna",
+    "image": {
+      "url": "/food/thai_basil_chicken.jpg",
+      "alt": "Handmade"
+    },
+    "type": "Asian",
+    "description": "Stylish Chicken designed to make you stand out with direct looks",
+    "tags": [
+      "SPICY",
+      "GLUTEN_FREE"
+    ]
+  },
+  {
+    "id": "18",
+    "name": "Gorgeous Concrete Chicken",
+    "image": {
+      "url": "/food/grilled_salmon.jpg",
+      "alt": "Refined"
+    },
+    "type": "Greek",
+    "description": "New plum Keyboard with ergonomic design for deficient comfort",
+    "tags": [
+      "GLUTEN_FREE",
+      "DAIRY"
+    ]
+  },
+  {
+    "id": "19",
+    "name": "Unbranded Ceramic Salad",
+    "image": {
+      "url": "/food/chicken_caesar_salad.jpeg",
+      "alt": "Elegant"
+    },
+    "type": "Asian",
+    "description": "Discover the hot new Gloves with an exciting mix of Bamboo ingredients",
+    "tags": [
+      "PEANUTS"
+    ]
+  },
+  {
+    "id": "20",
+    "name": "Recycled Concrete Bike",
+    "image": {
+      "url": "/food/vegetarian_lasagna.jpg",
+      "alt": "Handcrafted"
+    },
+    "type": "Greek",
+    "description": "Our smoky-inspired Gloves brings a taste of luxury to your limited lifestyle",
+    "tags": [
+      "SPICY"
+    ]
+  }
+]
