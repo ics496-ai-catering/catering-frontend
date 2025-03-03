@@ -101,7 +101,7 @@ export default function CateringInfoForm(
           />
         </div>
         <div className="flex justify-between">
-          <Button onClick={() => onChangeSection("catering-info")}>{"<-"} Basic Info</Button>
+          <Button type="button" onClick={() => onChangeSection("catering-info")}>{"<-"} Basic Info</Button>
           <Button type="submit">Submit</Button>
         </div>
       </form>

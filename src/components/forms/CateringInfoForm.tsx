@@ -295,8 +295,8 @@ export default function CateringInfoForm(
           />
         </div>
         <div className="flex justify-between">
-          <Button onClick={() => onChangeSection("create-order")}>{"<-"} Pick Food</Button>
-          <Button onClick={() => onChangeSection("finish")}>Contact Info {"->"}</Button>
+          <Button type="button" onClick={() => onChangeSection("create-order")}>{"<-"} Pick Food</Button>
+          <Button type="button" onClick={() => onChangeSection("finish")}>Contact Info {"->"}</Button>
         </div>
       </form>
     </UIForm>
