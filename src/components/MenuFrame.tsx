@@ -22,22 +22,30 @@ export default function MenuFrame({
   menu: Menu;
   items: Map<string, Item>;
 }) {
-  return (
-    <Card className="w-[250px] rounded-lg [box-shadow:0_4px_10px_0_rgba(0,0,0,.12)]">
-      <CardHeader>
-        <CardTitle>Menu #{menu.id}</CardTitle>
-      </CardHeader>
-      <CardContent className="flex flex-col p-4 gap-2">
-        <span className="text-sm">INCLUDES</span>
-        {menu.sets[0].item_ids.map((item_id) => {
-          const item = items.get(item_id);
-          return <span key={item_id}>{item?.name ?? "no name"}</span>;
-        })}
-      </CardContent>
-      <CardFooter className="justify-between">
-        <Button>more info</Button>
-        <Button>+</Button>
-      </CardFooter>
-    </Card>
-  );
+  return menu.sets.map((menu_set, index) => {
+    return (
+      <Card
+        key={index}
+        className="w-[250px] rounded-lg [box-shadow:0_4px_10px_0_rgba(0,0,0,.12)]"
+      >
+        <CardHeader>
+          <CardTitle>Menu #{menu_set.id}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-2">
+          <span className="text-sm">INCLUDES</span>
+          <div className="flex flex-col gap-2 p-1 text-xs text-gray-800">
+            {/* TODO: Clicking on the menu item should bring up ItemModal */}
+            {menu_set.item_ids.map((item_id, index) => {
+              const item = items.get(item_id);
+              return <span key={index}>{item?.name ?? "no name"}</span>;
+            })}
+          </div>
+        </CardContent>
+        <CardFooter className="justify-between">
+          <Button className="bg-gray-600">more info</Button>
+          <Button className="bg-green-600 hover:bg-green-800">+</Button>
+        </CardFooter>
+      </Card>
+    );
+  });
 }
