@@ -4,7 +4,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import ItemModal from "../ItemModal";
 import MenuFrame from "../MenuFrame";
 import { Item, Menu } from "@/lib/types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "../ui/button";
 
 export default function OrderForm({
@@ -22,9 +22,7 @@ export default function OrderForm({
   const [selectedMenuId, setSelectedMenuId] = useState<Menu["id"]>("1");
   const selectedMenu = menu_data.find((m) => m.id == selectedMenuId);
 
-  useEffect(() => {
-    console.log(selectedMenuId);
-  }, [selectedMenuId]);
+  // TODO: Use zustand to store the menus that users have added.
 
   return (
     <Tabs className="mx-auto space-y-4" defaultValue="menu-sets">
@@ -46,7 +44,7 @@ export default function OrderForm({
           Go through the recommended menus and select the order that best suits
           you.
         </span>
-        <div className="flex justify-center gap-3">
+        <div className="flex flex-wrap justify-center gap-3">
           {menu_data
             .sort((a, b) => a.price - b.price)
             .map((menu, index) => (
@@ -61,7 +59,19 @@ export default function OrderForm({
         </div>
 
         <p>Keep in mind that the prices are per person.</p>
-        <div>$5 Menus 1 Main Entree</div>
+        <div className="text-center">
+          <h1 className="text-2xl text-green-600 font-bold">
+            ${selectedMenu?.price} Menus
+          </h1>
+          {selectedMenu &&
+            Object.entries(selectedMenu.contains)
+              .filter(([, value]) => value > 0)
+              .map(
+                ([key, value]) =>
+                  `${key.charAt(0).toUpperCase() + key.slice(1)} ${value}`
+              )
+              .join(", ")}
+        </div>
         <div className="flex flex-row flex-wrap gap-4 justify-center">
           {selectedMenu ? (
             <MenuFrame menu={selectedMenu} items={item_map} />

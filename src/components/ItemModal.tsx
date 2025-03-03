@@ -17,10 +17,16 @@ import ItemFrame from "./ItemFrame";
  *
  * @returns
  */
-export default function ItemModal({ items }: { items: Item[] }) {
+export default function ItemModal({
+  items,
+  start_index,
+}: {
+  items: Item[];
+  start_index: number;
+}) {
   // TODO: Add a close button to the modal
   return (
-    <Carousel>
+    <Carousel opts={{ startIndex: start_index }}>
       <CarouselContent className="w-[400px] h-[500px] items-center">
         {items.map((item, index) => (
           <CarouselItem key={index}>
@@ -28,8 +34,8 @@ export default function ItemModal({ items }: { items: Item[] }) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="z-50" />
+      <CarouselNext className="z-50" />
     </Carousel>
   );
 }
