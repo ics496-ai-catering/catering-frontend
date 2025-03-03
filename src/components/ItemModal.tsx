@@ -31,8 +31,8 @@ export default function ItemModal({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="z-50" />
-      <CarouselNext className="z-50" />
+      <CarouselPrevious />
+      <CarouselNext />
     </Carousel>
   );
 }

@@ -15,6 +15,7 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import ItemModal from "./ItemModal";
+import Image from "next/image";
 
 /**
  * MenuFrame component
@@ -43,13 +44,24 @@ export default function MenuFrame({
         <CardHeader>
           <CardTitle>Menu #{menu_set.id}</CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-col gap-2">
+        <CardContent className="flex flex-col gap-4">
+          <div className="flex flex-wrap gap-2 justify-center">
+            {items_in_menu.map((item, index) => (
+              <Image
+                key={index}
+                src={item.image.url}
+                alt={item.image.alt}
+                width={250}
+                height={171}
+                className="w-8 h-8 rounded-full object-cover"
+              />
+            ))}
+          </div>
           <span className="text-sm">INCLUDES</span>
           <div className="flex flex-col gap-2 p-1 text-xs text-gray-800">
             {/* TODO: Clicking on the menu item should bring up ItemModal */}
-            {menu_set.item_ids.map((item_id, index) => {
-              const item = items.get(item_id);
-              return <span key={index}>{item?.name ?? "no name"}</span>;
+            {items_in_menu.map((item, index) => {
+              return <span key={index}>{item.name}</span>;
             })}
           </div>
         </CardContent>

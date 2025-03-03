@@ -42,7 +42,10 @@ export default function OrderForm({
         <span className="font-bold">Select a Menu. </span>
         <span className="text-sm text-gray-600">
           Go through the recommended menus and select the order that best suits
-          you.
+          you.{" "}
+        </span>
+        <span className="text-sm text-gray-600 underline">
+          Keep in mind that the prices are per person.
         </span>
         <div className="flex flex-wrap justify-center gap-3">
           {menu_data
@@ -57,8 +60,6 @@ export default function OrderForm({
               </Button>
             ))}
         </div>
-
-        <p>Keep in mind that the prices are per person.</p>
         <div className="text-center">
           <h1 className="text-2xl text-green-600 font-bold">
             ${selectedMenu?.price} Menus
@@ -83,8 +84,8 @@ export default function OrderForm({
       <TabsContent value="customize-order">
         <div className="flex flex-col items-center gap-16">
           {/* Temporarily creating modals here; move them out later */}
-          <ItemModal items={item_data.slice(0, 5)} start_index={0}/>
-          <ItemModal items={item_data.slice(5, 10)} start_index={0}/>
+          <ItemModal items={item_data.slice(0, 5)} start_index={0} />
+          <ItemModal items={item_data.slice(5, 10)} start_index={0} />
         </div>
       </TabsContent>
       <TabsContent value="ai-recommender">AI recommendations</TabsContent>
