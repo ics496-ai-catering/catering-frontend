@@ -7,6 +7,8 @@ import ContactInfoForm from "@/components/forms/ContactInfoForm";
 import { Item, Menu } from "@/lib/types";
 import { useState } from "react";
 import MenuFrame from "./MenuFrame";
+import { ContactInfoFormData } from "@/lib/schemas/contactInfoSchema";
+import {CateringInfoFormData} from "@/lib/schemas/cateringInfoSchema";
 
 export default function RequestCatering({
   item_data,
@@ -20,12 +22,14 @@ export default function RequestCatering({
     item_data.map((item) => [item.id, item])
   );
 
-  const [tab, setTab] = useState<string>("create-order");
+  const [tab, setTab] = useState<string>("finish");
+  const [contactInfo, setContactInfo] = useState<ContactInfoFormData>();
+  const [cateringInfo, setCateringInfo] = useState<CateringInfoFormData>();
 
   return (
     <Tabs
       className="w-3/4"
-      defaultValue="create-order"
+      defaultValue="finish"
       value={tab}
       onValueChange={(tab) => setTab(tab)}
     >
@@ -86,14 +90,14 @@ export default function RequestCatering({
         value="catering-info"
       >
         <h1 className="font-medium text-2xl my-4">Basic Info & Services</h1>
-        <CateringInfoForm onChangeSection={setTab} />
+        <CateringInfoForm onChangeSection={setTab} formData={cateringInfo} setFormData={setCateringInfo} />
       </TabsContent>
       <TabsContent
         className="bg-gray-50 p-4 m-4 border-2 rounded-md"
         value="finish"
       >
         <h1 className="font-medium text-2xl my-4">Contact Info</h1>
-        <ContactInfoForm onChangeSection={setTab} />
+        <ContactInfoForm onChangeSection={setTab} formData={contactInfo} setFormData={setContactInfo} />
       </TabsContent>
     </Tabs>
   );

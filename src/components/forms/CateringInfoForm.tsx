@@ -1,9 +1,8 @@
 "use client"
 
-import { Dispatch, SetStateAction } from 'react';
+import {Dispatch, SetStateAction, useEffect} from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
@@ -28,77 +27,29 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import { TimePicker } from "@/components/TimePicker";
-
-const eventTypes = [
-  {
-    id: "wedding",
-    label: "Wedding",
-  },
-  {
-    id: "birthday",
-    label: "Birthday",
-  },
-  {
-    id: "film-set",
-    label: "Film Set",
-  },
-  {
-    id: "party",
-    label: "Party",
-  },
-  {
-    id: "other",
-    label: "Other",
-  },
-] as const;
-
-const services = [
-  {
-    id: "tents",
-    label: "Tents",
-  },
-  {
-    id: "serving-staff",
-    label: "Serving Staff",
-  },
-  {
-    id: "entertainment",
-    label: "Entertainment",
-  },
-  {
-    id: "delivery",
-    label: "Delivery",
-  },
-] as const;
-
-const formSchema = z.object({
-  eventType: z.enum(eventTypes.map(e => e.id) as [string, ...string[]]),
-  // z.coerce needed to convert input string to number for z
-  partySize: z.coerce.number().min(1,{
-    message: "Party size must be at least 1."
-  }),
-  // It might be better to separate the date and time in the future
-  dateTime: z.date(),
-  budgetPerPerson: z.coerce.number().min(0, {
-    message: "Budget must be at least 0."
-  }),
-  location: z.string(),
-  services: z.array(z.enum(services.map(s => s.id) as [string, ...string[]])),
-  moreInfo: z.string().optional(),
-})
+import {
+  eventTypes,
+  services,
+  cateringInfoFormSchema,
+  CateringInfoFormData
+} from "@/lib/schemas/cateringInfoSchema";
 
 interface Props {
   onChangeSection: Dispatch<SetStateAction<string>>,
+  formData: CateringInfoFormData | undefined,
+  setFormData: Dispatch<SetStateAction<CateringInfoFormData | undefined>>,
 }
 
 export default function CateringInfoForm(
   {
     onChangeSection,
+    formData,
+    setFormData,
   }: Props
 ) {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
+  const form = useForm<CateringInfoFormData>({
+    resolver: zodResolver(cateringInfoFormSchema),
+    defaultValues: formData || {
       partySize: 1,
       budgetPerPerson: 0,
       location: "",
@@ -106,7 +57,18 @@ export default function CateringInfoForm(
       moreInfo: "",
     },
   })
-  function onSubmit(values: z.infer<typeof formSchema>) {
+
+  const { watch } = form;
+  // https://www.react-hook-form.com/api/useform/watch/
+  useEffect(() => {
+    const subscription = watch((value) => {
+      // Value contains the entire form data
+      setFormData(value as CateringInfoFormData);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, setFormData]);
+
+  function onSubmit(values:CateringInfoFormData) {
     console.log(values);
   }
   return (

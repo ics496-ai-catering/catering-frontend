@@ -1,9 +1,8 @@
 "use client"
 
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form as UIForm,
@@ -15,31 +14,41 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-const formSchema = z.object({
-  fullName: z.string(),
-  phoneNumber: z.string(),
-  email: z.string(),
-})
+import { contactInfoFormSchema, ContactInfoFormData } from "@/lib/schemas/contactInfoSchema";
 
 interface Props {
   onChangeSection: Dispatch<SetStateAction<string>>,
+  formData: ContactInfoFormData | undefined,
+  setFormData: Dispatch<SetStateAction<ContactInfoFormData | undefined>>,
 }
 
 export default function CateringInfoForm(
   {
-    onChangeSection
+    onChangeSection,
+    formData,
+    setFormData,
   }: Props
 ) {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
+  const form = useForm<ContactInfoFormData>({
+    resolver: zodResolver(contactInfoFormSchema),
+    defaultValues: formData || {
       fullName: "",
       phoneNumber: "",
       email: "",
     },
   })
-  function onSubmit(values: z.infer<typeof formSchema>) {
+
+  const { watch } = form;
+  // https://www.react-hook-form.com/api/useform/watch/
+  useEffect(() => {
+    const subscription = watch((value) => {
+      // Value contains the entire form data
+      setFormData(value as ContactInfoFormData);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, setFormData]);
+
+  function onSubmit(values: ContactInfoFormData) {
     console.log(values);
   }
   return (
