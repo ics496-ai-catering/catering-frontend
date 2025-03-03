@@ -1,3 +1,5 @@
+"use client";
+
 import { Item, Menu } from "@/lib/types";
 import { Button } from "./ui/button";
 import {
@@ -9,6 +11,8 @@ import {
 } from "./ui/card";
 import Image from "next/image";
 import ItemDialog from "./ItemDialog";
+import { LoaderCircleIcon, PlusIcon } from "lucide-react";
+import { useState } from "react";
 
 /**
  * MenuFrame component
@@ -24,6 +28,16 @@ export default function MenuFrame({
   menu: Menu;
   items: Map<string, Item>;
 }) {
+  const [loading, setLoading] = useState(false);
+
+  const handleButtonClick = () => {
+    setLoading(true);
+    setTimeout(() => {
+      // mock a fake loading state
+      setLoading(false);
+    }, 1000);
+  };
+
   return menu.sets.map((menu_set, index) => {
     const items_in_menu = menu_set.item_ids
       .map((item_id) => items.get(item_id))
@@ -68,7 +82,16 @@ export default function MenuFrame({
             startIndex={0}
             trigger={<Button className="bg-gray-600">more info</Button>}
           />
-          <Button className="bg-green-600 hover:bg-green-800">+</Button>
+          <Button
+            className="bg-green-600 hover:bg-green-800"
+            onClick={handleButtonClick}
+          >
+            {loading ? (
+              <LoaderCircleIcon className="animate-spin" />
+            ) : (
+              <PlusIcon />
+            )}
+          </Button>
         </CardFooter>
       </Card>
     );
