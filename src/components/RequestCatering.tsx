@@ -4,11 +4,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ItemModal from "@/components/ItemModal";
 import CateringInfoForm from "@/components/forms/CateringInfoForm";
 import ContactInfoForm from "@/components/forms/ContactInfoForm";
+import TabsContentCard from "@/components/TabsContentCard";
 import { Item, Menu } from "@/lib/types";
 import { useState } from "react";
 import MenuFrame from "./MenuFrame";
 import { ContactInfoFormData } from "@/lib/schemas/contactInfoSchema";
-import {CateringInfoFormData} from "@/lib/schemas/cateringInfoSchema";
+import { CateringInfoFormData } from "@/lib/schemas/cateringInfoSchema";
 
 export default function RequestCatering({
   item_data,
@@ -22,18 +23,17 @@ export default function RequestCatering({
     item_data.map((item) => [item.id, item])
   );
 
-  const [tab, setTab] = useState<string>("finish");
+  const [tab, setTab] = useState<string>("create-order");
   const [contactInfo, setContactInfo] = useState<ContactInfoFormData>();
   const [cateringInfo, setCateringInfo] = useState<CateringInfoFormData>();
 
   return (
     <Tabs
-      className="w-3/4"
-      defaultValue="finish"
+      className="flex flex-col items-center w-full lg:w-[48rem] xl:w-3/4"
       value={tab}
       onValueChange={(tab) => setTab(tab)}
     >
-      <TabsList className="mx-auto grid w-[45rem] grid-cols-3">
+      <TabsList className="grid w-full md:w-[48rem] grid-cols-3">
         <TabsTrigger className="text-xs" value="create-order">
           Create Your Order
         </TabsTrigger>
@@ -44,10 +44,7 @@ export default function RequestCatering({
           Finish
         </TabsTrigger>
       </TabsList>
-      <TabsContent
-        className="bg-gray-50 p-4 m-4 border-2 rounded-md space-y-4"
-        value="create-order"
-      >
+      <TabsContentCard className="space-y-4" value="create-order">
         <h1 className="font-medium text-2xl my-4">Choose ordering method</h1>
         <Tabs className="mx-auto space-y-4" defaultValue="menu-sets">
           {/* TODO: style these tabs to look like the original cards */}
@@ -84,21 +81,17 @@ export default function RequestCatering({
           </TabsContent>
           <TabsContent value="ai-recommender">AI recommendations</TabsContent>
         </Tabs>
-      </TabsContent>
-      <TabsContent
-        className="bg-gray-50 p-4 m-4 border-2 rounded-md"
+      </TabsContentCard>
+      <TabsContentCard
         value="catering-info"
       >
         <h1 className="font-medium text-2xl my-4">Basic Info & Services</h1>
         <CateringInfoForm onChangeSection={setTab} formData={cateringInfo} setFormData={setCateringInfo} />
-      </TabsContent>
-      <TabsContent
-        className="bg-gray-50 p-4 m-4 border-2 rounded-md"
-        value="finish"
-      >
+      </TabsContentCard>
+      <TabsContentCard value="finish">
         <h1 className="font-medium text-2xl my-4">Contact Info</h1>
         <ContactInfoForm onChangeSection={setTab} formData={contactInfo} setFormData={setContactInfo} />
-      </TabsContent>
+      </TabsContentCard>
     </Tabs>
   );
 }
