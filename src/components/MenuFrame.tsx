@@ -7,15 +7,8 @@ import {
   CardContent,
   CardFooter,
 } from "./ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-  DialogTrigger,
-} from "./ui/dialog";
-import ItemModal from "./ItemModal";
 import Image from "next/image";
+import ItemDialog from "./ItemDialog";
 
 /**
  * MenuFrame component
@@ -58,26 +51,23 @@ export default function MenuFrame({
             ))}
           </div>
           <span className="text-sm">INCLUDES</span>
-          <div className="flex flex-col gap-2 p-1 text-xs text-gray-800">
-            {/* TODO: Clicking on the menu item should bring up ItemModal */}
-            {items_in_menu.map((item, index) => {
-              return <span key={index}>{item.name}</span>;
-            })}
+          <div className="flex flex-col gap-2 p-1 text-xs text-gray-600">
+            {items_in_menu.map((item, index) => (
+              <ItemDialog
+                key={index}
+                items={items_in_menu}
+                startIndex={index}
+                trigger={<span className="cursor-pointer">{item.name}</span>}
+              />
+            ))}
           </div>
         </CardContent>
         <CardFooter className="justify-between">
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button className="bg-gray-600">more info</Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px] bg-background-none border-none">
-              <DialogTitle className="sr-only">Menu Item Modal</DialogTitle>
-              <DialogDescription className="sr-only">
-                A carousel display of menu items.
-              </DialogDescription>
-              <ItemModal items={items_in_menu} start_index={0} />
-            </DialogContent>
-          </Dialog>
+          <ItemDialog
+            items={items_in_menu}
+            startIndex={0}
+            trigger={<Button className="bg-gray-600">more info</Button>}
+          />
           <Button className="bg-green-600 hover:bg-green-800">+</Button>
         </CardFooter>
       </Card>

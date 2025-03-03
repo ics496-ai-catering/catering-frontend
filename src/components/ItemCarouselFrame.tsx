@@ -2,6 +2,7 @@ import { Item, ItemTags } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
+import { PropsWithChildren } from "react";
 
 // const tagStyles: { [key in ItemTags]: string } = {
 const tagStyles: Record<string, string> = {
@@ -14,14 +15,21 @@ const tagStyles: Record<string, string> = {
 };
 
 /**
- * ItemFrame component
+ * ItemCarouselFrame component
  *
  * This component displays the details of a singular item.
  *
  * @param item
  * @returns
  */
-export default function ItemFrame({ item }: { item: Item }) {
+export default function ItemCarouselFrame({
+  children,
+  item,
+  showDescription,
+}: PropsWithChildren<{
+  item: Item;
+  showDescription: boolean;
+}>) {
   return (
     <Card className="rounded-2xl [box-shadow:0_4px_17px_0_rgba(0,0,0,.12)]">
       <CardHeader className="pb-0">
@@ -36,7 +44,7 @@ export default function ItemFrame({ item }: { item: Item }) {
           className="rounded-2xl w-full"
         />
         <p className="text-sm uppercase">{item.type}</p>
-        <p className="text-center">{item.description}</p>
+        {showDescription && <p className="text-center">{item.description}</p>}
         <div className="flex gap-2 mt-4">
           {item.tags?.map((tag) => (
             <span
@@ -50,6 +58,7 @@ export default function ItemFrame({ item }: { item: Item }) {
             </span>
           ))}
         </div>
+        {children}
       </CardContent>
     </Card>
   );

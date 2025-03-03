@@ -1,11 +1,11 @@
 "use client";
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import ItemModal from "../ItemModal";
 import MenuFrame from "../MenuFrame";
 import { Item, Menu } from "@/lib/types";
 import { useState } from "react";
 import { Button } from "../ui/button";
+import ItemCarouselFrame from "../ItemCarouselFrame";
 
 export default function OrderForm({
   item_data,
@@ -82,10 +82,18 @@ export default function OrderForm({
         </div>
       </TabsContent>
       <TabsContent value="customize-order">
-        <div className="flex flex-col items-center gap-16">
-          {/* Temporarily creating modals here; move them out later */}
-          <ItemModal items={item_data.slice(0, 5)} start_index={0} />
-          <ItemModal items={item_data.slice(5, 10)} start_index={0} />
+        <div className="flex flex-wrap justify-center gap-8">
+          {item_data.map((item, index) => (
+            <div key={index} className="flex-grow basis-[250px]">
+              <ItemCarouselFrame
+                key={index}
+                item={item}
+                showDescription={false}
+              >
+                <Button className="bg-green-600">Add to Order</Button>
+              </ItemCarouselFrame>
+            </div>
+          ))}
         </div>
       </TabsContent>
       <TabsContent value="ai-recommender">AI recommendations</TabsContent>

@@ -6,16 +6,16 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "./ui/carousel";
-import ItemFrame from "./ItemFrame";
+import ItemCarouselFrame from "./ItemCarouselFrame";
 
 /**
- * ItemModal component
+ * ItemCarousel component
  *
- * This component wraps the ItemFrame componenet for pagination in a modal view.
+ * This component wraps individual ItemCarouselFrame components in a carousel.
  *
  * @returns
  */
-export default function ItemModal({
+export default function ItemCarousel({
   items,
   start_index,
 }: {
@@ -27,7 +27,7 @@ export default function ItemModal({
       <CarouselContent className="w-[400px] h-[500px] items-center">
         {items.map((item, index) => (
           <CarouselItem key={index}>
-            <ItemFrame item={item} />
+            <ItemCarouselFrame item={item} showDescription={true} />
           </CarouselItem>
         ))}
       </CarouselContent>
