@@ -83,8 +83,8 @@ export default function OrderForm({
       <TabsContent value="customize-order">
         <div className="flex flex-col items-center gap-16">
           {/* Temporarily creating modals here; move them out later */}
-          <ItemModal items={item_data.slice(0, 5)} />
-          <ItemModal items={item_data.slice(5, 10)} />
+          <ItemModal items={item_data.slice(0, 5)} start_index={0}/>
+          <ItemModal items={item_data.slice(5, 10)} start_index={0}/>
         </div>
       </TabsContent>
       <TabsContent value="ai-recommender">AI recommendations</TabsContent>

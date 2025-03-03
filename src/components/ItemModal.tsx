@@ -1,5 +1,3 @@
-"use client";
-
 import { Item } from "@/lib/types";
 import {
   Carousel,
@@ -24,7 +22,6 @@ export default function ItemModal({
   items: Item[];
   start_index: number;
 }) {
-  // TODO: Add a close button to the modal
   return (
     <Carousel opts={{ startIndex: start_index }}>
       <CarouselContent className="w-[400px] h-[500px] items-center">
