@@ -45,30 +45,32 @@ const generateMenus = (menuCount: number, items: Item[]): Menu[] => {
   );
 
   return Array.from({ length: menuCount }, (_, i) => {
-    const numSets = 2;
-    const itemsPerSet = 5;
+    const itemsPerSet = faker.number.int({ min: 2, max: 5 });
     const itemIds = faker.helpers.shuffle(items.map((item) => item.id));
 
-    const sets: MenuSet[] = Array.from({ length: numSets }, (_, setIndex) => ({
-      id: `${setIndex + 1}`,
-      item_ids: itemIds.slice(
-        setIndex * itemsPerSet,
-        (setIndex + 1) * itemsPerSet
-      ),
-    }));
+    const sets: MenuSet[] = Array.from(
+      { length: faker.number.int({ min: 2, max: 5 }) },
+      (_, setIndex) => ({
+        id: `${setIndex + 1}`,
+        item_ids: itemIds.slice(
+          setIndex * itemsPerSet,
+          (setIndex + 1) * itemsPerSet
+        ),
+      })
+    );
 
     return {
       id: (i + 1).toString(),
       name: faker.commerce.department() + " Feast",
       price: prices[i],
       contains: {
-        entree: itemsPerSet - 2,
-        sides: 1,
-        pastries: 0,
-        scratch: 0,
-        fruit: 1,
-        salad: 1,
-        drinks: 1,
+        entree: faker.number.int({ min: 0, max: 1 }),
+        sides: faker.number.int({ min: 0, max: 1 }),
+        pastries: faker.number.int({ min: 0, max: 1 }),
+        scratch: faker.number.int({ min: 0, max: 1 }),
+        fruit: faker.number.int({ min: 0, max: 1 }),
+        salad: faker.number.int({ min: 0, max: 1 }),
+        drinks: faker.number.int({ min: 0, max: 1 }),
       },
       sets,
     };
