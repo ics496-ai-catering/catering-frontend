@@ -27,10 +27,9 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import { TimePicker } from "@/components/TimePicker";
-import {
+import cateringInfoSchema, {
   eventTypes,
   services,
-  cateringInfoFormSchema,
   CateringInfoFormData
 } from "@/lib/schemas/cateringInfoSchema";
 
@@ -48,7 +47,7 @@ export default function CateringInfoForm(
   }: Props
 ) {
   const form = useForm<CateringInfoFormData>({
-    resolver: zodResolver(cateringInfoFormSchema),
+    resolver: zodResolver(cateringInfoSchema),
     defaultValues: formData || {
       partySize: 1,
       budgetPerPerson: 0,

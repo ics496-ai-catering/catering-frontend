@@ -1,14 +1,18 @@
 "use client";
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import OrderForm from "@/components/forms/OrderForm";
 import CateringInfoForm from "@/components/forms/CateringInfoForm";
 import ContactInfoForm from "@/components/forms/ContactInfoForm";
+import { ContactInfoFormData } from "@/lib/schemas/contactInfoSchema";
+import { CateringInfoFormData } from "@/lib/schemas/cateringInfoSchema";
 import TabsContentCard from "@/components/TabsContentCard";
 import { Item, Menu } from "@/lib/types";
 import { useState } from "react";
-import { ContactInfoFormData } from "@/lib/schemas/contactInfoSchema";
-import { CateringInfoFormData } from "@/lib/schemas/cateringInfoSchema";
-import OrderForm from "./forms/OrderForm";
+import { Button } from "@/components/ui/button";
+import { UtensilsIcon } from "lucide-react";
+import { useSidebar } from "@/components/ui/sidebar";
+import { OrderSidebar } from "@/components/OrderSidebar";
 
 export default function RequestCatering({
   item_data,
@@ -18,8 +22,11 @@ export default function RequestCatering({
   menu_data: Menu[];
 }) {
   const [tab, setTab] = useState<string>("create-order");
-  const [contactInfo, setContactInfo] = useState<ContactInfoFormData>();
+  const { toggleSidebar } = useSidebar();
+
+  // const order: Item[] = useOrderStore((state) => state.order);
   const [cateringInfo, setCateringInfo] = useState<CateringInfoFormData>();
+  const [contactInfo, setContactInfo] = useState<ContactInfoFormData>();
 
   return (
     <Tabs
@@ -39,7 +46,10 @@ export default function RequestCatering({
         </TabsTrigger>
       </TabsList>
       <TabsContentCard className="space-y-4" value="create-order">
-        <h1 className="font-medium text-2xl my-4">Choose ordering method</h1>
+        <div className="flex justify-between my-4">
+          <h1 className="font-medium text-2xl">Choose ordering method</h1>
+          <Button size="sm" onClick={toggleSidebar} className="bg-green-600"><UtensilsIcon strokeWidth={3} /> View your order</Button>
+        </div>
         <OrderForm item_data={item_data} menu_data={menu_data} />
       </TabsContentCard>
       <TabsContentCard value="catering-info">
@@ -58,6 +68,7 @@ export default function RequestCatering({
           setFormData={setContactInfo}
         />
       </TabsContentCard>
+      <OrderSidebar />
     </Tabs>
   );
 }

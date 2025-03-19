@@ -14,7 +14,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { contactInfoFormSchema, ContactInfoFormData } from "@/lib/schemas/contactInfoSchema";
+import contactInfoSchema, {
+  ContactInfoFormData
+} from "@/lib/schemas/contactInfoSchema";
 
 interface Props {
   onChangeSection: Dispatch<SetStateAction<string>>,
@@ -30,7 +32,7 @@ export default function CateringInfoForm(
   }: Props
 ) {
   const form = useForm<ContactInfoFormData>({
-    resolver: zodResolver(contactInfoFormSchema),
+    resolver: zodResolver(contactInfoSchema),
     defaultValues: formData || {
       fullName: "",
       phoneNumber: "",

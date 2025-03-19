@@ -26,7 +26,7 @@ export default function MenuFrame({
   items,
 }: {
   menu: Menu;
-  items: Map<string, Item>;
+  items: Map<Item["id"], Item>;
 }) {
   const [loading, setLoading] = useState(false);
 
@@ -39,8 +39,9 @@ export default function MenuFrame({
   };
 
   return menu.sets.map((menu_set, index) => {
+    // TODO: change this parseInt(item_id) to just item_id when we fully move on from the default menu data
     const items_in_menu = menu_set.item_ids
-      .map((item_id) => items.get(item_id))
+      .map((item_id) => items.get(parseInt(item_id)))
       .filter((x) => x !== undefined);
 
     return (

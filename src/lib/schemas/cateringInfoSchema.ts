@@ -42,7 +42,7 @@ export const services = [
   },
 ] as const;
 
-export const cateringInfoFormSchema = z.object({
+const cateringInfoSchema = z.object({
   eventType: z.enum(eventTypes.map(e => e.id) as [string, ...string[]]),
   // z.coerce needed to convert input string to number for z
   partySize: z.coerce.number().min(1,{
@@ -58,4 +58,6 @@ export const cateringInfoFormSchema = z.object({
   moreInfo: z.string().optional(),
 })
 
-export type CateringInfoFormData = z.infer<typeof cateringInfoFormSchema>;
+export type CateringInfoFormData = z.infer<typeof cateringInfoSchema>;
+
+export default cateringInfoSchema;

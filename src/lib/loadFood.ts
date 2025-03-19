@@ -30,11 +30,12 @@ export async function loadFood(): Promise<Item[]> {
         if (gluten_free === 1) tags.push("GLUTEN_FREE");
         if (peanut_free === 0) tags.push("PEANUTS");
         return {
-          id: food_id.toString(),
+          id: food_id,
           type,
           name,
           description: "",
           image: {
+            // TODO: need to access the actual images
             url: "/food/lemon_herb.jpg",
             alt: "Image of " + name,
           },

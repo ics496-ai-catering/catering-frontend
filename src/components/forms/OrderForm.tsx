@@ -6,6 +6,7 @@ import { Item, Menu } from "@/lib/types";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import ItemCarouselFrame from "../ItemCarouselFrame";
+import useOrderStore from "@/lib/stores/orderStore";
 
 export default function OrderForm({
   item_data,
@@ -21,6 +22,8 @@ export default function OrderForm({
 
   const [selectedMenuId, setSelectedMenuId] = useState<Menu["id"]>("1");
   const selectedMenu = menu_data.find((m) => m.id == selectedMenuId);
+  const order = useOrderStore((state) => state.order);
+  const addItem = useOrderStore((state) => state.addItem);
 
   // TODO: Use zustand to store the menus that users have added.
 
@@ -90,7 +93,10 @@ export default function OrderForm({
                 item={item}
                 showDescription={false}
               >
-                <Button className="bg-green-600">Add to Order</Button>
+                <Button className="bg-green-600" onClick={() => {
+                  addItem(item);
+                  console.log(order);
+                }}>Add to Order</Button>
               </ItemCarouselFrame>
             </div>
           ))}
