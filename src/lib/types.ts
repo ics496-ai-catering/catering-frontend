@@ -1,13 +1,15 @@
 export type Item = {
   id: string;
+  type: string;
   name: string;
+  description: string,
   image: {
     url: string;
     alt: string;
   };
-  type: string;
-  description: string;
+  regions: string[];
   tags?: string[];
+  popularity: number;
 };
 
 export enum ItemTags {

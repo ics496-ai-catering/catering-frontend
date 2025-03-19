@@ -1,11 +1,13 @@
-import sampleItems from "@/items.json";
+// import sampleItems from "@/items.json";
 import sampleMenus from "@/menus.json";
 import { Item, Menu } from "@/lib/types";
 import RequestCatering from "@/components/RequestCatering";
+import { loadFood } from "@/lib/loadFood";
 
-export default function Home() {
+export default async function Home() {
   // TODO: We could process the data by passing it into Zod for schema validation, and get matching enums.
-  const item_data: Item[] = sampleItems;
+  const item_data: Item[] = await loadFood();
+  // const item_data = sampleItems;
   const menu_data: Menu[] = sampleMenus;
 
   return (
