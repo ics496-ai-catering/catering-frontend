@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
-import { TimePicker } from "@/components/TimePicker";
+import TimePicker from "@/components/TimePicker";
 import cateringInfoSchema, {
   eventTypes,
   services,

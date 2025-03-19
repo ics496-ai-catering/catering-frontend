@@ -1,18 +1,16 @@
 "use client";
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import TabsContentCard from "@/components/TabsContentCard";
 import OrderForm from "@/components/forms/OrderForm";
 import CateringInfoForm from "@/components/forms/CateringInfoForm";
 import ContactInfoForm from "@/components/forms/ContactInfoForm";
+import OrderSidebar from "@/components/OrderSidebar";
+import ViewOrderButton from "@/components/ViewOrderButton";
 import { ContactInfoFormData } from "@/lib/schemas/contactInfoSchema";
 import { CateringInfoFormData } from "@/lib/schemas/cateringInfoSchema";
-import TabsContentCard from "@/components/TabsContentCard";
 import { Item, Menu } from "@/lib/types";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { UtensilsIcon } from "lucide-react";
-import { useSidebar } from "@/components/ui/sidebar";
-import { OrderSidebar } from "@/components/OrderSidebar";
 
 export default function RequestCatering({
   item_data,
@@ -22,7 +20,6 @@ export default function RequestCatering({
   menu_data: Menu[];
 }) {
   const [tab, setTab] = useState<string>("create-order");
-  const { toggleSidebar } = useSidebar();
 
   // const order: Item[] = useOrderStore((state) => state.order);
   const [cateringInfo, setCateringInfo] = useState<CateringInfoFormData>();
@@ -48,12 +45,15 @@ export default function RequestCatering({
       <TabsContentCard className="space-y-4" value="create-order">
         <div className="flex justify-between my-4">
           <h1 className="font-medium text-2xl">Choose ordering method</h1>
-          <Button size="sm" onClick={toggleSidebar} className="bg-green-600"><UtensilsIcon strokeWidth={3} /> View your order</Button>
+          <ViewOrderButton />
         </div>
         <OrderForm item_data={item_data} menu_data={menu_data} />
       </TabsContentCard>
       <TabsContentCard value="catering-info">
-        <h1 className="font-medium text-2xl my-4">Basic Info & Services</h1>
+        <div className="flex justify-between my-4">
+          <h1 className="font-medium text-2xl">Basic Info & Services</h1>
+          <ViewOrderButton />
+        </div>
         <CateringInfoForm
           onChangeSection={setTab}
           formData={cateringInfo}
@@ -61,7 +61,10 @@ export default function RequestCatering({
         />
       </TabsContentCard>
       <TabsContentCard value="finish">
-        <h1 className="font-medium text-2xl my-4">Contact Info</h1>
+        <div className="flex justify-between my-4">
+          <h1 className="font-medium text-2xl">Contact Info</h1>
+          <ViewOrderButton />
+        </div>
         <ContactInfoForm
           onChangeSection={setTab}
           formData={contactInfo}

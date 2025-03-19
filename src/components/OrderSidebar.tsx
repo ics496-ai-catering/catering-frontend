@@ -11,7 +11,7 @@ import {
 import useOrderStore from "@/lib/stores/orderStore";
 import { Item } from "@/lib/types";
 
-export function OrderSidebar() {
+export default function OrderSidebar() {
   const order: Item[] = useOrderStore((state) => state.order);
   return (
     <Sidebar side="right">
