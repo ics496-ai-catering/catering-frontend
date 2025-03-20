@@ -49,20 +49,20 @@ export default function TimePicker({ date, setDate }: TimePickerDemoProps) {
           onRightFocus={() => secondRef.current?.focus()}
         />
       </div>
-      <div className="grid gap-1 text-center">
-        {/*<Label htmlFor="seconds" className="text-xs">*/}
-        {/*  Seconds*/}
-        {/*</Label>*/}
-        <TimePickerInput
-          picker="seconds"
-          id="seconds12"
-          date={date}
-          setDate={setDate}
-          ref={secondRef}
-          onLeftFocus={() => minuteRef.current?.focus()}
-          onRightFocus={() => periodRef.current?.focus()}
-        />
-      </div>
+      {/*<div className="grid gap-1 text-center">*/}
+      {/*  <Label htmlFor="seconds" className="text-xs">*/}
+      {/*    Seconds*/}
+      {/*  </Label>*/}
+      {/*  <TimePickerInput*/}
+      {/*    picker="seconds"*/}
+      {/*    id="seconds12"*/}
+      {/*    date={date}*/}
+      {/*    setDate={setDate}*/}
+      {/*    ref={secondRef}*/}
+      {/*    onLeftFocus={() => minuteRef.current?.focus()}*/}
+      {/*    onRightFocus={() => periodRef.current?.focus()}*/}
+      {/*  />*/}
+      {/*</div>*/}
       <div className="grid gap-1 text-center">
         {/*<Label htmlFor="period" className="text-xs">*/}
         {/*  Period*/}

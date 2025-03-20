@@ -153,31 +153,16 @@ export default function CateringInfoForm(
                         }
                         initialFocus
                       />
+                      <div className="p-3 border-t border-border">
+                        <TimePicker
+                          setDate={field.onChange}
+                          date={field.value}
+                        />
+                      </div>
                     </PopoverContent>
                   </Popover>
                   <FormDescription>
                     What is the date you need catering?
-                  </FormDescription>
-                  <FormMessage/>
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="flex justify-center">
-            <FormField
-              control={form.control}
-              name="dateTime"
-              render={({field}) => (
-                <FormItem>
-                  <FormLabel>Time</FormLabel>
-                  <FormControl>
-                    <TimePicker
-                      setDate={field.onChange}
-                      date={field.value}
-                    />
-                  </FormControl>
-                  <FormDescription>
-                    What is the time you need catering?
                   </FormDescription>
                   <FormMessage/>
                 </FormItem>
